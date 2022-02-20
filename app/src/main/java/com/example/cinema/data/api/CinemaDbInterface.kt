@@ -1,16 +1,23 @@
 package com.example.cinema.data.api
 
-import com.example.cinema.data.vo.CinemaDetails
+import com.example.cinema.data.vo.CinemaData
 import io.reactivex.Single
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CinemaDbInterface {
 
     //add the endpoints of the URL
 
-    @GET("movie/{movie_id}")
+    @GET()
+    fun getCinema(
 
-    fun getCinema(@Path("movie_id")id:Int) :Single<CinemaDetails>  //SIngle => observable in rx java
+        @Query("s") s :String,
+        @Query("page") page :Int,
+        @Query("apikey") apikey : String,
+
+    ) : Call<CinemaData>
 
 }

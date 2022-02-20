@@ -1,4 +1,4 @@
-package com.example.cinema.single_cinema_details;
+package com.example.cinema.ui.single_cinema_details;
 
 import androidx.appcompat.app.AppCompatActivity;
 
