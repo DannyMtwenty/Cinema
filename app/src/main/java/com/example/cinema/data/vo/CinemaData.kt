@@ -1,7 +1,7 @@
 package com.example.cinema.data.vo
 
-data class CinemaData(
+data class CinemaResponse(
     val Response: String,
-    val Search: List<CinemaDetails>,
+    val Search: List<Cinema>,
     val totalResults: String
 )

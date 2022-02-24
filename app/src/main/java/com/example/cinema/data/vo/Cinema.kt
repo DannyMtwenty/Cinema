@@ -1,6 +1,6 @@
 package com.example.cinema.data.vo
 
-data class CinemaDetails(
+data class Cinema(
     val Poster: String,
     val Title: String,
     val Type: String,

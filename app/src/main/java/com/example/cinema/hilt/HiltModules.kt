@@ -1,13 +1,11 @@
 package com.example.cinema.hilt
 
-import com.example.cinema.data.api.BASE_URL
 import com.example.cinema.data.api.CinemaDbInterface
 import com.example.cinema.utils.Constants.base_url
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
