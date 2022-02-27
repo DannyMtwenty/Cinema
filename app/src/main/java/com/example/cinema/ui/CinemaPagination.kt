@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.example.cinema.data.api.CinemaDbInterface
 import com.example.cinema.data.vo.Cinema
 import com.example.cinema.utils.Constants
-import com.example.cinema.utils.Constants.base_url
+import android.util.Log
 
 class CinemaPagination(val s :  String,val cinemaDbInterface: CinemaDbInterface) :
     PagingSource<Int, Cinema>() {   //PagingSource -> where to retrieve the items
@@ -15,7 +15,7 @@ class CinemaPagination(val s :  String,val cinemaDbInterface: CinemaDbInterface)
 
         //if anchorposition is not null
         return state.anchorPosition?.let {
-        var anchorpage=state?.closestPageToPosition(it)  //get closest pg position
+        var anchorpage=state.closestPageToPosition(it)  //get closest pg position
           anchorpage?.prevKey?.plus(1)?:anchorpage?.nextKey?.minus(1)
 
       }
@@ -29,7 +29,7 @@ class CinemaPagination(val s :  String,val cinemaDbInterface: CinemaDbInterface)
         return try {
 
             val data =cinemaDbInterface.getCinema(s, page,Constants.api_key)
-
+            Log.d("TAG", "load: ${data.body()}")
             LoadResult.Page(
                 data = data.body()?.Search!!,
                 prevKey = if (page == 1) null else page - 1,

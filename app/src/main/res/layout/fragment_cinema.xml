@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.CinemaFragment">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/design_default_color_on_primary"
+        tools:context=".ui.CinemaFragment">
 
-</FrameLayout>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/cinema_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_700"
+            app:title="Cinema Details"
+            app:titleTextColor="@color/white">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/cinema_search"
+                style="@style/Widget.AppCompat.SearchView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cinema_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/cinema_toolbar"
+            tools:listitem="@layout/cinema_item_viewholder" />
+
+
+    </RelativeLayout>
+</layout>
