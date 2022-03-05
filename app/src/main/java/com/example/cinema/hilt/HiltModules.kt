@@ -1,6 +1,7 @@
 package com.example.cinema.hilt
 
 import com.example.cinema.data.api.CinemaDbInterface
+import com.example.cinema.data.repository.CinemaDetailsRepository
 import com.example.cinema.utils.Constants
 
 import dagger.Module
@@ -26,6 +27,13 @@ object HiltModules {
              .build()
              .create(CinemaDbInterface::class.java)
     }
+
+    @Provides
+    fun provideRepository(cinemaDbInterface: CinemaDbInterface) : CinemaDetailsRepository {
+        return  CinemaDetailsRepository(cinemaDbInterface)
+
+    }
+
 
 
 }

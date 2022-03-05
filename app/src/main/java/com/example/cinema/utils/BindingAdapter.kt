@@ -6,6 +6,11 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 @BindingAdapter("load")
-fun LoadImage(view: ImageView,url : String){
-    Glide.with(view).load(url).into(view)
+fun LoadImage(view: ImageView,url : String?){
+    //if url is not null
+    url?.let {
+        Glide.with(view).load(it).into(view)
+    }
+
+
 }

@@ -1,7 +1,9 @@
 package com.example.cinema.ui
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,10 @@ import com.example.cinema.databinding.CinemaItemViewholderBindingImpl
 //presents PagingData(container for paginatedData) in a RecyclerView
 class PaginationAdapter : PagingDataAdapter<Cinema,PaginationAdapter.MyViewHolder>(diff_Util) {
 
+    var onClick: ((String) -> Unit)? = null
+
+
+
     companion object{
         val diff_Util= object  : DiffUtil.ItemCallback<Cinema>(){
             override fun areItemsTheSame(oldItem: Cinema, newItem: Cinema): Boolean {
@@ -25,12 +31,21 @@ class PaginationAdapter : PagingDataAdapter<Cinema,PaginationAdapter.MyViewHolde
             }
         }
     }
-
+    fun cinemaClick(listener: (String)->Unit){
+        onClick=listener
+    }
 
     inner class MyViewHolder(val viewHolderBinding: CinemaItemViewholderBinding) :RecyclerView.ViewHolder(viewHolderBinding.root)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.viewHolderBinding.setVariable(BR.cinema,getItem(position))
+        val data_cinema=getItem(position)
+        holder.viewHolderBinding.setVariable(BR.cinema,data_cinema)
+
+        holder.viewHolderBinding.root.setOnClickListener(){
+            onClick?.let {
+                it(data_cinema?.imdbID!!)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
